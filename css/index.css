@@ -11,9 +11,9 @@ body {
   bottom: 0;
   animation-name: slidein;
   animation-duration: 0.5s;
-  height: 200px;
-  width: 137px;
-  float: left;
+  height: 100px;
+  width: 68px;
+  /* float: left; */
   border-radius: 6%;
   background-color: wheat;
   background-size: contain;
