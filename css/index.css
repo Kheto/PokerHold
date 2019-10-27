@@ -1,0 +1,73 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  margin: 0;
+}
+
+.card {
+  position: relative;
+  bottom: 0;
+  animation-name: slidein;
+  animation-duration: 0.5s;
+  height: 200px;
+  width: 137px;
+  float: left;
+  border-radius: 6%;
+  background-color: wheat;
+  background-size: contain;
+  margin-right: 10px;
+  background-repeat: no-repeat;
+}
+
+.app-container {
+  /* display: flex;
+  flex-direction: column;
+  align-content: space-between; */
+  margin: 15px;
+  height: 100%;
+}
+
+.flop-container {
+  display: flex;
+  width: 100%;
+}
+
+.hand-container {
+  margin-top: 50px;
+  display: flex;
+  position: fixed;
+  width: 100%;
+  bottom: 10px;
+}
+
+.hand-container > .card {
+  margin-top: 10px;
+  transition: margin-top 0.5s;
+}
+
+.hand-container > .card:hover {
+  margin-top: 0;
+}
+
+.scoreboard {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: 140%;
+  padding: 50px;
+  list-style-type: none;
+}
+
+* {
+  background-color: rgb(145, 205, 233);
+}
+
+@keyframes slidein {
+  0% {
+    bottom: 2000px;
+  }
+  100% {
+    bottom: 0;
+  }
+}
