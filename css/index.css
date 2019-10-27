@@ -4,6 +4,7 @@ body {
   height: 100%;
   border: 0;
   margin: 0;
+  background-color: black;
 }
 
 .card {
@@ -16,6 +17,8 @@ body {
   /* float: left; */
   border-radius: 6%;
   background-color: wheat;
+  border: 1px solid hotpink;
+
   background-size: contain;
   margin-right: 10px;
   background-repeat: no-repeat;
@@ -52,14 +55,14 @@ body {
 }
 
 .scoreboard {
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
   font-size: 140%;
   padding: 50px;
   list-style-type: none;
 }
 
 * {
+  font-family: dos, sans-serif;
+  /* color: white; */
   background-color: rgb(145, 205, 233);
 }
 
@@ -70,4 +73,9 @@ body {
   100% {
     bottom: 0;
   }
+}
+
+@font-face {
+  font-family: DOS;
+  src: url(fonts/Perfect\ DOS\ VGA\ 437.ttf);
 }
