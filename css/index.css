@@ -60,6 +60,25 @@ body {
   list-style-type: none;
 }
 
+.result-overlay-container{
+    /* background-color: white; */
+}
+
+.result-overlay{
+    position: fixed;
+    /* padding: 15%; */
+    background-color: #ff1fbce5;
+    color: rgb(0, 183, 255);
+    font-size: 300%;
+    margin:25px;
+    padding:75px;
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+}
+
 * {
   font-family: dos, sans-serif;
   /* color: white; */

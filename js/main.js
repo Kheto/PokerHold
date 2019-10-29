@@ -12,8 +12,9 @@ var SCORE_VALUES = {
   Straight: 125,
   "Four of a Kind": 300
 };
-var FLOP_SIZE = 5;
-var HAND_SIZE = 3;
+var FLOP_SIZE = 5,
+  HAND_SIZE = 3;
+var DECK_MIN_SIZE = FLOP_SIZE - HAND_SIZE - 1;
 
 var score = {},
   tableCards = [],
@@ -76,9 +77,14 @@ function resolveGame(value, suit) {
     score[hand.name] = 1;
   }
   console.log(hand.name);
-  updateScore();
-  cleanup();
-  setupRound();
+  if (deck.length > DECK_MIN_SIZE) {
+    updateScore();
+    cleanup();
+    setupRound();
+  } else {
+    cleanup();
+    gameover();
+  }
 }
 
 function setupRound() {
@@ -134,6 +140,23 @@ function updateScore() {
   newRow = document.createElement("li");
   newRow.innerText = `Total: $${total}`;
   scoreboard.appendChild(newRow);
+}
+
+function gameover() {
+  var total = 0;
+  var highscore = window.sessionStorage.getItem("highscore");
+  for (row in score) {
+    total += score[row] * SCORE_VALUES[row];
+  }
+  if(highscore < total){
+      highscore = total;
+      window.sessionStorage.setItem("highscore", total);
+  }
+  var resultOverlay = document.createElement("div");
+  resultOverlay.innerText =
+    "Game Over \n Final score: $" + total + "\nHighscore: $" + highscore;
+  resultOverlay.classList.add("result-overlay");
+  document.querySelector(".app-container").appendChild(resultOverlay);
 }
 
 function removeChildren(element) {
