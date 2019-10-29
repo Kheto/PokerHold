@@ -14,13 +14,15 @@ var SCORE_VALUES = {
 };
 var FLOP_SIZE = 5,
   HAND_SIZE = 3;
-var DECK_MIN_SIZE = FLOP_SIZE - HAND_SIZE - 1;
+var DECK_MIN_SIZE = (FLOP_SIZE + HAND_SIZE) - 1;
 
 var score = {},
   tableCards = [],
   carriedCard = [];
 
 var animTime = 1;
+
+var roundsLeft = 3;
 
 deck.populate = function() {
   for (suit of SUITS) {
@@ -77,7 +79,13 @@ function resolveGame(value, suit) {
     score[hand.name] = 1;
   }
   console.log(hand.name);
-  if (deck.length > DECK_MIN_SIZE) {
+  console.log(deck.length)
+
+  if(deck.length < DECK_MIN_SIZE){
+      roundsLeft -= 1;
+  }
+
+  if (roundsLeft > 0) {
     updateScore();
     cleanup();
     setupRound();
