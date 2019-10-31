@@ -14,7 +14,7 @@ var SCORE_VALUES = {
 };
 var FLOP_SIZE = 5,
   HAND_SIZE = 3;
-var DECK_MIN_SIZE = (FLOP_SIZE + HAND_SIZE) - 1;
+var DECK_MIN_SIZE = FLOP_SIZE + HAND_SIZE - 1;
 
 var score = {},
   tableCards = [],
@@ -25,9 +25,12 @@ var animTime = 1;
 var roundsLeft = 3;
 
 deck.populate = function() {
+  //console.log("Carried card:", carriedCard[0][0], carriedCard[0][1]);
   for (suit of SUITS) {
     for (value of VALUES) {
-      deck.push([value, suit]);
+      if (value !== carriedCard[0] || suit !== carriedCard[1]) {
+        deck.push([value, suit]);
+      }
     }
   }
 };
@@ -55,14 +58,16 @@ function createCard(value, suit) {
 }
 
 function resolveGame(value, suit) {
-  carriedCard = tableCards.splice(
-    tableCards.indexOf(
-      tableCards.find((e, i) => {
-        return e[0] == value && e[1] == suit;
-      })
-    ),
-    1
-  );
+  carriedCard = tableCards
+    .splice(
+      tableCards.indexOf(
+        tableCards.find((e, i) => {
+          return e[0] == value && e[1] == suit;
+        })
+      ),
+      1
+    )
+    .flat();
   var hand = Hand.solve(
     tableCards.map(x => {
       return x.join("");
@@ -79,10 +84,10 @@ function resolveGame(value, suit) {
     score[hand.name] = 1;
   }
   console.log(hand.name);
-  console.log(deck.length)
+  console.log(deck.length);
 
-  if(deck.length < DECK_MIN_SIZE){
-      roundsLeft -= 1;
+  if (deck.length < DECK_MIN_SIZE) {
+    roundsLeft -= 1;
   }
 
   if (roundsLeft > 0) {
@@ -112,7 +117,8 @@ function setupRound() {
     var newCard;
     var isCarried = false;
     if (carriedCard.length > 0) {
-      newCard = carriedCard.pop();
+      newCard = carriedCard;
+      carriedCard = [];
       isCarried = true;
     } else {
       newCard = deck.draw();
@@ -156,9 +162,9 @@ function gameover() {
   for (row in score) {
     total += score[row] * SCORE_VALUES[row];
   }
-  if(highscore < total){
-      highscore = total;
-      window.sessionStorage.setItem("highscore", total);
+  if (highscore < total) {
+    highscore = total;
+    window.sessionStorage.setItem("highscore", total);
   }
   var resultOverlay = document.createElement("div");
   resultOverlay.innerText =
