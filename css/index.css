@@ -4,6 +4,8 @@ body {
   height: 100%;
   border: 0;
   margin: 0;
+  color: rgb(87, 46, 30);
+  background-color: rgb(24, 228, 255);
   /* background-color: black; */
 }
 
@@ -16,7 +18,7 @@ body {
   width: 68px;
   /* float: left; */
   border-radius: 6%;
-  background-color: wheat;
+  background-color: rgb(255, 234, 49);
   border: 1px solid hotpink;
 
   background-size: contain;
@@ -65,24 +67,50 @@ body {
 }
 
 .result-overlay{
-    position: fixed;
     /* padding: 15%; */
     background-color: #ff1fbce5;
     color: rgb(0, 183, 255);
     font-size: 300%;
     margin:25px;
     padding:75px;
-    position:absolute;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
+}
+
+.shuffle-overlay{
+  background-color: hotpink;
+  display: flex;
+  justify-content: space-around;
+}
+
+.shuffle-container:nth-child(2n){
+  animation-delay: 0.5s;
+}
+
+.shuffle-text{
+  font-size: 600%;
+  animation: flashtext 0.5s forwards;
+  animation-iteration-count: infinite;
+}
+
+.overlay{
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+}
+
+.center{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.hidden{
+  display:none;
 }
 
 * {
   font-family: dos, sans-serif;
-  /* color: white; */
-  background-color: rgb(145, 205, 233);
 }
 
 @keyframes slidein {
@@ -91,6 +119,24 @@ body {
   }
   100% {
     bottom: 0;
+  }
+}
+
+@keyframes flashtext {
+  0% {
+    color:crimson;
+  }
+  25%{
+    color:magenta;
+  }
+  50%{
+    color:aqua;
+  }
+  75%{
+    color:powderblue;
+  }
+  100%{
+    color:crimson;
   }
 }
 

@@ -15,6 +15,7 @@ var SCORE_VALUES = {
 var FLOP_SIZE = 5,
   HAND_SIZE = 3;
 var DECK_MIN_SIZE = FLOP_SIZE + HAND_SIZE - 1;
+var INITIAL_ROUNDS = 3;
 
 var score = {},
   tableCards = [],
@@ -22,7 +23,15 @@ var score = {},
 
 var animTime = 1;
 
-var roundsLeft = 3;
+var roundsLeft = INITIAL_ROUNDS;
+
+//initialize shuffle animation
+var shuffleAnimationDelay = 0.5;
+for(el of document.querySelectorAll(".shuffle-text")){
+    console.log(el)
+    el.style.animationDelay = shuffleAnimationDelay;
+    shuffleAnimationDelay += 0.5 + "s";
+}
 
 deck.populate = function() {
   //console.log("Carried card:", carriedCard[0][0], carriedCard[0][1]);
@@ -102,6 +111,9 @@ function resolveGame(value, suit) {
 
 function setupRound() {
   if (deck.length < 8) {
+      if(roundsLeft < INITIAL_ROUNDS){
+        displayShuffleOverlay();
+    }
     deck.populate();
     deck.shuffle();
   }
@@ -169,8 +181,16 @@ function gameover() {
   var resultOverlay = document.createElement("div");
   resultOverlay.innerText =
     "Game Over \n Final score: $" + total + "\nHighscore: $" + highscore;
+    resultOverlay.classList.add("overlay");
   resultOverlay.classList.add("result-overlay");
   document.querySelector(".app-container").appendChild(resultOverlay);
+}
+
+function displayShuffleOverlay(){
+    document.querySelector(".shuffle-overlay").classList.remove("hidden");
+    setTimeout(() => {
+        document.querySelector(".shuffle-overlay").classList.add("hidden");
+    }, 1000);
 }
 
 function removeChildren(element) {
