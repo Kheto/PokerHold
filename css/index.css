@@ -1,11 +1,30 @@
+:root {
+  --black: #000000;
+  --blue: #0000aa;
+  --green: #00aa00;
+  --cyan: #00aaaa;
+  --red: #aa0000;
+  --magenta: #aa00aa;
+  --brown: #aa5500;
+  --light-grey: #aaaaaa;
+  --bright-black: #555555;
+  --bright-blue: #5555ff;
+  --bright-green: #55ff55;
+  --bright-cyan: #55ffff;
+  --bright-red: #ff5555;
+  --bright-magenta: #ff55ff;
+  --bright-yellow: #ffff55;
+  --bright-white: #ffffff;
+}
+
 html,
 body {
   width: 100%;
   height: 100%;
   border: 0;
   margin: 0;
-  color: rgb(87, 46, 30);
-  background-color: rgb(24, 228, 255);
+  color: var(--brown);
+  background-color: var(--bright-cyan);
   image-rendering: pixelated;
   /* background-color: black; */
 }
@@ -19,8 +38,8 @@ body {
   width: 68px;
   /* float: left; */
   border-radius: 6%;
-  background-color: rgb(255, 234, 49);
-  border: 1px solid hotpink;
+  background-color: var(--bright-yellow);
+  border: 1px solid var(--bright-red);
 
   background-size: contain;
   margin-right: 10px;
@@ -39,6 +58,10 @@ body {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
+}
+
+.flop-container > .card {
+  margin-right: -10px;
 }
 
 .hand-container {
@@ -64,51 +87,52 @@ body {
   list-style-type: none;
 }
 
-.result-overlay-container{
-    /* background-color: white; */
+.result-overlay-container {
+  /* background-color: white; */
 }
 
-.result-overlay{
-    /* padding: 15%; */
-    background-color: #ff1fbce5;
-    color: rgb(0, 183, 255);
-    font-size: 300%;
-    margin:25px;
-    padding:75px;
+.result-overlay {
+  /* padding: 15%; */
+  background-color: var(--bright-magenta);
+  color: var(--bright-cyan);
+  font-size: 300%;
+  margin: 25px;
+  padding: 75px;
 }
 
-.shuffle-overlay{
-  background-color: hotpink;
+.shuffle-overlay {
+  background-color: var(--bright-magenta);
   display: flex;
   justify-content: space-around;
 }
 
-.shuffle-container:nth-child(2n){
+.shuffle-container:nth-child(2n) {
   animation-delay: 0.5s;
 }
 
-.shuffle-text{
+.shuffle-text {
   font-size: 600%;
   animation: flashtext 0.5s forwards;
   animation-iteration-count: infinite;
+  animation-timing-function: steps(1);
 }
 
-.overlay{
-  position:absolute;
-  top:0;
-  left:0;
-  right:0;
-  bottom:0;
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
-.center{
+.center {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
 
-.hidden{
-  display:none;
+.hidden {
+  display: none;
 }
 
 * {
@@ -126,19 +150,19 @@ body {
 
 @keyframes flashtext {
   0% {
-    color:crimson;
+    color: crimson;
   }
-  25%{
-    color:magenta;
+  25% {
+    color: magenta;
   }
-  50%{
-    color:aqua;
+  50% {
+    color: aqua;
   }
-  75%{
-    color:powderblue;
+  75% {
+    color: powderblue;
   }
-  100%{
-    color:crimson;
+  100% {
+    color: crimson;
   }
 }
 
