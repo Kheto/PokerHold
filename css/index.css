@@ -6,6 +6,7 @@ body {
   margin: 0;
   color: rgb(87, 46, 30);
   background-color: rgb(24, 228, 255);
+  image-rendering: pixelated;
   /* background-color: black; */
 }
 
