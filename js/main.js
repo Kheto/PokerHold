@@ -120,9 +120,12 @@ function setupRound() {
   for (var i = 0; i < FLOP_SIZE; i++) {
     var newCard = deck.draw();
     tableCards.push(newCard);
+    var cardEl = createCard(newCard[0], newCard[1]);
+    cardEl.onclick = undefined;
     document
       .querySelector(".flop-container")
-      .appendChild(createCard(newCard[0], newCard[1]));
+      .appendChild(cardEl);
+
   }
 
   for (var i = 0; i < HAND_SIZE; i++) {
