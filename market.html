@@ -10,7 +10,7 @@
   <body>
     <div class="shop-container">
       <div class="header">
-        <div class="current-cash">$4000</div>
+        <div class="current-cash">$0</div>
       </div>
       <div class="display">
         <table class="product-list">
@@ -18,7 +18,9 @@
         <div class="product-spacer"></div>
       </div>
       <div class="controls">
-        <div class="button" href="./index.html">Return</div>
+        <a href="./index.html">
+            <div class="button" >Return</div>
+            </a>
         <div class="button" onclick="purchase()">Purchase</div>
       </div>
     </div>
@@ -26,7 +28,7 @@
       <div class="result-text">
 
       </div>
-      <div class="result-controls"><div class="button"></div>
+      <div class="result-controls"><div class="button" onclick="closeOverlay()">Done</div>
     </div>
   </body>
   <script src="js/market.js"></script>

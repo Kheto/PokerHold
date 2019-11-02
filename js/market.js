@@ -9,13 +9,13 @@ var items = [
   },
   {
     id: 1,
-    price: 200,
-    desc: "Buy the latest games console.",
+    price: 349,
+    desc: "Latest games console.",
     result: `You sit down to play the most recently released video game. A loading bar informs you that it will be ready to play in 4 hours.
 
   After the game has started, you play for 15 minutes before realising you aren't having fun.`
   },
-  { id: 2, price: 200, desc: "Buy the latest games console." }
+  { id: 2, price: 30, desc: "Screen printed canvas bag.", result:`Upon receiving the bag you spend 20 minutes thinking of new outfits that it would compliment. You briefly consider buying new clothes before putting the bag somewhere in your car and forgetting about it.` }
 ];
 
 var CASH_ID = "test_cash";
@@ -42,6 +42,11 @@ function populate() {
   }
 }
 
+function updateCashDisplay(){
+  cash = getCash();
+  document.querySelector(".cash-display").innerText = `$${cash}`;
+}
+
 function createProductRow(product) {
   var rowElement = document.createElement("tr");
   rowElement.innerHTML = `<td class="desc">$${product.price}</td>
@@ -51,10 +56,15 @@ function createProductRow(product) {
 
 function purchase() {
   console.log("Purchased", selected);
-  document.querySelector(".result-overlay").textContent = getProductById(
+  document.querySelector(".result-text").textContent = getProductById(
     selected
   ).result;
   document.querySelector(".result-overlay").classList.remove("hidden");
+  populate();
+}
+
+function closeOverlay(){
+  document.querySelector(".result-overlay").classList.add("hidden");
 }
 
 function getProductById(id) {
@@ -68,10 +78,11 @@ function getProductById(id) {
 
 function getCash() {
   var temp_cash = window.localStorage.getItem(CASH_ID);
-  if (temp_cash == undefined) {
+  if (temp_cash == null) {
     return 0;
   }
   return temp_cash;
 }
 
 populate();
+updateCashDisplay();

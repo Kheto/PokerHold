@@ -27,6 +27,10 @@ body {
   color: var(--bright-white);
 }
 
+a{
+  color:inherit;
+}
+
 .header {
   font-size: 300%;
   display: flex;
@@ -74,6 +78,23 @@ body {
   background-color: var(--bright-black);
   color: var(--bright-yellow);
   padding: 50px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.result-text{
+  width:10em;
+  padding-left:50px;
+}
+
+.result-overlay .button{
+  border-color: var(--bright-yellow);
+}
+
+.result-controls{
+  display: flex;
+  justify-content: space-around;
 }
 
 .overlay {

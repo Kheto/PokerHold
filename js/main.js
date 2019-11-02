@@ -187,6 +187,14 @@ function gameover() {
     resultOverlay.classList.add("overlay");
   resultOverlay.classList.add("result-overlay");
   document.querySelector(".app-container").appendChild(resultOverlay);
+
+  var cash = parseInt(window.localStorage.getItem(CASH_ID));
+  if(cash == null || cash == NaN){
+    cash = 0;
+  }
+
+  window.localStorage.setItem(CASH_ID, cash);
+
 }
 
 function displayShuffleOverlay(){
