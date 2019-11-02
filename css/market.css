@@ -1,0 +1,94 @@
+:root {
+  --black: #000000;
+  --blue: #0000aa;
+  --green: #00aa00;
+  --cyan: #00aaaa;
+  --red: #aa0000;
+  --magenta: #aa00aa;
+  --brown: #aa5500;
+  --light-grey: #aaaaaa;
+  --bright-black: #555555;
+  --bright-blue: #5555ff;
+  --bright-green: #55ff55;
+  --bright-cyan: #55ffff;
+  --bright-red: #ff5555;
+  --bright-magenta: #ff55ff;
+  --bright-yellow: #ffff55;
+  --bright-white: #ffffff;
+}
+
+* {
+  font-family: dos, sans-serif;
+}
+
+html,
+body {
+  background-color: var(--black);
+  color: var(--bright-white);
+}
+
+.header {
+  font-size: 300%;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 50px;
+}
+
+.product-list tr{
+  height: 3em;
+}
+
+.product-list td {
+  padding: 5px;
+  border: 2px solid var(--bright-white);
+}
+
+.product-list .selected {
+  background-color: var(--bright-white);
+  color: var(--black);
+}
+
+.product-spacer{
+    height: 50px;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-around;
+  position: sticky;
+  bottom: 5px;
+  /* padding-bottom: 50px; */
+  padding: 5px 5px 50px 5px;
+  background-color: var(--black);
+  width: 93%;
+  border: 2px solid var(--bright-white);
+}
+
+.button {
+  padding: 10px;
+  border: 2px solid var(--bright-white);
+  float: left;
+}
+
+.result-overlay {
+  background-color: var(--bright-black);
+  color: var(--bright-yellow);
+  padding: 50px 10px 10px;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+@font-face {
+  font-family: DOS;
+  src: url("fonts/Perfect\ DOS\ VGA\ 437.ttf");
+}
