@@ -6,7 +6,7 @@ var items = [
   {
     id: 0,
     dependsOn: -1,
-    price: 2000,
+    price: 2500,
     desc: "Take out a hit on Jeremy Clarkson.",
     result: `Jeremy Clarkson saunters confidently to his car and gets in. After
   briefly reveling in how rich he is, he turns the key in the ignition and
