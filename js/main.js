@@ -15,7 +15,7 @@ var SCORE_VALUES = {
 var FLOP_SIZE = 5,
   HAND_SIZE = 3;
 var DECK_MIN_SIZE = FLOP_SIZE + HAND_SIZE - 1;
-var INITIAL_ROUNDS = 1;
+var INITIAL_ROUNDS = 3;
 
 var CASH_ID = "test_cash";
 
