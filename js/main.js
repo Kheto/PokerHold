@@ -1,6 +1,6 @@
 var deck = [];
 var SUITS = ["c", "d", "h", "s"],
-  VALUES = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
+  VALUES = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K"];
 
 var SCORE_VALUES = {
   "High Card": 0,
