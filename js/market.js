@@ -23,27 +23,31 @@ var items = [
   }
 ];
 
-var CASH_ID = "test_cash";
+var CASH_ID = "test_cash",
+  HISTORY_ID = "test_history";
 
 var selected = undefined;
 var cash = getCash();
 
 function populate() {
   var productList = document.querySelector(".product-list");
+  var history = getPurchaseHistory();
 
   for (let item of items) {
-    var rowElement = createProductRow(item);
-    rowElement.id = item.id;
-    rowElement.onclick = () => {
-      if (selected !== undefined) {
-        document.getElementById(selected).classList.remove("selected");
-      }
-      document.getElementById(item.id).classList.add("selected");
-      selected = item.id;
+    if (history.indexOf(item.id) < 0) {
+      var rowElement = createProductRow(item);
+      rowElement.id = item.id;
+      rowElement.onclick = () => {
+        if (selected !== undefined) {
+          document.getElementById(selected).classList.remove("selected");
+        }
+        document.getElementById(item.id).classList.add("selected");
+        selected = item.id;
 
-      //   rowElement.classList.add("selected");
-    };
-    productList.appendChild(rowElement);
+        //   rowElement.classList.add("selected");
+      };
+      productList.appendChild(rowElement);
+    }
   }
 }
 
@@ -65,14 +69,14 @@ function purchase() {
   if (cash - product.price > 0) {
     document.querySelector(".result-text").textContent = product.result;
     cash -= product.price;
-    setCash(cash)
+    setCash(cash);
+    updatePurchaseHistory(product.id);
     document.querySelector(".result-overlay").classList.remove("hidden");
   }
-  var cashCounter = document.querySelector(".current-cash")
+  var cashCounter = document.querySelector(".current-cash");
   cashCounter.classList.remove("flash-text");
-  cashCounter.offsetHeight
+  cashCounter.offsetHeight;
   cashCounter.classList.add("flash-text");
-  
 }
 
 function closeOverlay() {
@@ -96,8 +100,23 @@ function getCash() {
   return temp_cash;
 }
 
-function setCash(){
-  window.localStorage.setItem(CASH_ID, cash)
+function setCash() {
+  window.localStorage.setItem(CASH_ID, cash);
+}
+
+function getPurchaseHistory() {
+  var temp_hist = window.localStorage.getItem(HISTORY_ID);
+  if (temp_hist === null) {
+    return [];
+  }
+  return JSON.parse(temp_hist);
+}
+
+function updatePurchaseHistory(id) {
+  var temp_hist = getPurchaseHistory();
+  temp_hist.push(id);
+  temp_hist = JSON.stringify(temp_hist);
+  window.localStorage.setItem(HISTORY_ID, temp_hist);
 }
 
 populate();
