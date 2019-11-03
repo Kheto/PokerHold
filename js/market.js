@@ -83,7 +83,12 @@ var items = [
     desc: "Used car",
     result:
       "This car is only slightly nicer than you previous car. It makes fewer weird noises. You realise you left your canvas bag in the old one."
-  }
+  },
+  {id: 10,
+  dependsOn: 0,
+price: 400,
+desc: "Adrenochrome from the dark net",
+result:"A white powder arrives in a nondescript package. You're not sure how to take it. You've heard you should have someone with you to guide you through the trip. You don't trust any of your friends enough so it sits at the back of a drawer for 47 years until one of your children inherits it."}
 ];
 
 var CASH_ID = "test_cash",
