@@ -1,6 +1,11 @@
+Array.prototype.contains = function(val) {
+  return this.indexOf(val) > -1 ? true : false;
+};
+
 var items = [
   {
     id: 0,
+    dependsOn: -1,
     price: 4000,
     desc: "Take out a hit on Jeremy Clarkson.",
     result: `Jeremy Clarkson saunters confidently to his car and gets in. After
@@ -9,6 +14,7 @@ var items = [
   },
   {
     id: 1,
+    dependsOn: -1,
     price: 349,
     desc: "Latest games console.",
     result: `You sit down to play the most recently released video game. A loading bar informs you that it will be ready to play in 4 hours.
@@ -17,9 +23,17 @@ var items = [
   },
   {
     id: 2,
+    dependsOn: -1,
     price: 30,
     desc: "Screen printed canvas bag.",
     result: `Upon receiving the bag you spend 20 minutes thinking of new outfits that it would compliment. You briefly consider buying new clothes before putting the bag somewhere in your car and forgetting about it.`
+  },
+  {
+    id: 3,
+    dependsOn: 0,
+    price: 10000,
+    desc: "Buy Jeremy's old cars",
+    result: ""
   }
 ];
 
@@ -34,7 +48,8 @@ function populate() {
   var history = getPurchaseHistory();
 
   for (let item of items) {
-    if (history.indexOf(item.id) < 0) {
+    console.log(item.id, item.dependsOn)
+    if ((!history.contains(item.id) && item.dependsOn < 0) || history.contains(item.dependsOn)) {
       var rowElement = createProductRow(item);
       rowElement.id = item.id;
       rowElement.onclick = () => {
