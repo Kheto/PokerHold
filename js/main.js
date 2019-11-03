@@ -7,8 +7,8 @@ var SCORE_VALUES = {
   Pair: 5,
   "Two Pair": 25,
   "Three of a Kind": 50,
-  "Full House": 150,
-  Flush: 200,
+  "Full House": 200,
+  Flush: 100,
   Straight: 250,
   "Four of a Kind": 300
 };
