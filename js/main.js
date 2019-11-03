@@ -4,13 +4,13 @@ var SUITS = ["c", "d", "h", "s"],
 
 var SCORE_VALUES = {
   "High Card": 0,
-  Pair: 1,
-  "Two Pair": 5,
-  "Three of a Kind": 20,
-  "Full House": 50,
-  Flush: 100,
-  Straight: 125,
-  "Four of a Kind": 300
+  Pair: 10,
+  "Two Pair": 25,
+  "Three of a Kind": 50,
+  "Full House": 200,
+  Flush: 300,
+  Straight: 400,
+  "Four of a Kind": 500
 };
 var FLOP_SIZE = 5,
   HAND_SIZE = 3;
