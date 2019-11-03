@@ -90,7 +90,7 @@ function getProductById(id) {
 
 function getCash() {
   var temp_cash = window.localStorage.getItem(CASH_ID);
-  if (temp_cash == null) {
+  if (temp_cash == null || isNaN(temp_cash)) {
     return 0;
   }
   return temp_cash;

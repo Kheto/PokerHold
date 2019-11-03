@@ -15,7 +15,7 @@ var SCORE_VALUES = {
 var FLOP_SIZE = 5,
   HAND_SIZE = 3;
 var DECK_MIN_SIZE = FLOP_SIZE + HAND_SIZE - 1;
-var INITIAL_ROUNDS = 3;
+var INITIAL_ROUNDS = 1;
 
 var CASH_ID = "test_cash";
 
@@ -185,11 +185,11 @@ function gameover() {
   document.querySelector(".result-overlay").classList.remove("hidden");
 
   var cash = parseInt(window.localStorage.getItem(CASH_ID));
-  if (cash == null || cash == NaN) {
+  if (cash == null || isNaN(cash)) {
     cash = 0;
   }
   cash += total;
-
+  console.log("setting cash to", cash)
   window.localStorage.setItem(CASH_ID, cash);
 }
 
