@@ -109,7 +109,24 @@ a{
   display: none;
 }
 
+.flash-text{
+  animation: flashtext 0.25s;
+  animation-iteration-count: 3;
+}
+
 @font-face {
   font-family: DOS;
   src: url("fonts/Perfect\ DOS\ VGA\ 437.ttf");
+}
+
+@keyframes flashtext {
+  0% {
+    color: unset;
+  }
+  50% {
+    color: #00000000;
+  }
+  100% {
+    color: unset;
+  }
 }

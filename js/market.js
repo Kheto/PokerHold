@@ -15,7 +15,12 @@ var items = [
 
   After the game has started, you play for 15 minutes before realising you aren't having fun.`
   },
-  { id: 2, price: 30, desc: "Screen printed canvas bag.", result:`Upon receiving the bag you spend 20 minutes thinking of new outfits that it would compliment. You briefly consider buying new clothes before putting the bag somewhere in your car and forgetting about it.` }
+  {
+    id: 2,
+    price: 30,
+    desc: "Screen printed canvas bag.",
+    result: `Upon receiving the bag you spend 20 minutes thinking of new outfits that it would compliment. You briefly consider buying new clothes before putting the bag somewhere in your car and forgetting about it.`
+  }
 ];
 
 var CASH_ID = "test_cash";
@@ -42,9 +47,9 @@ function populate() {
   }
 }
 
-function updateCashDisplay(){
+function updateCashDisplay() {
   cash = getCash();
-  document.querySelector(".cash-display").innerText = `$${cash}`;
+  document.querySelector(".current-cash").innerText = `$${cash}`;
 }
 
 function createProductRow(product) {
@@ -56,14 +61,21 @@ function createProductRow(product) {
 
 function purchase() {
   console.log("Purchased", selected);
-  document.querySelector(".result-text").textContent = getProductById(
-    selected
-  ).result;
-  document.querySelector(".result-overlay").classList.remove("hidden");
-  populate();
+  var product = getProductById(selected);
+  if (cash - product.price > 0) {
+    document.querySelector(".result-text").textContent = product.result;
+    cash -= product.price;
+    setCash(cash)
+    document.querySelector(".result-overlay").classList.remove("hidden");
+  }
+  var cashCounter = document.querySelector(".current-cash")
+  cashCounter.classList.remove("flash-text");
+  cashCounter.offsetHeight
+  cashCounter.classList.add("flash-text");
+  
 }
 
-function closeOverlay(){
+function closeOverlay() {
   document.querySelector(".result-overlay").classList.add("hidden");
 }
 
@@ -82,6 +94,10 @@ function getCash() {
     return 0;
   }
   return temp_cash;
+}
+
+function setCash(){
+  window.localStorage.setItem(CASH_ID, cash)
 }
 
 populate();

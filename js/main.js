@@ -15,7 +15,9 @@ var SCORE_VALUES = {
 var FLOP_SIZE = 5,
   HAND_SIZE = 3;
 var DECK_MIN_SIZE = FLOP_SIZE + HAND_SIZE - 1;
-var INITIAL_ROUNDS = 3;
+var INITIAL_ROUNDS = 1;
+
+var CASH_ID = "test_cash";
 
 var score = {},
   tableCards = [],
@@ -27,10 +29,10 @@ var roundsLeft = INITIAL_ROUNDS;
 
 //initialize shuffle animation
 var shuffleAnimationDelay = 0.5;
-for(el of document.querySelectorAll(".shuffle-text")){
-    console.log(el)
-    el.style.animationDelay = shuffleAnimationDelay;
-    shuffleAnimationDelay += 0.5 + "s";
+for (el of document.querySelectorAll(".shuffle-text")) {
+  console.log(el);
+  el.style.animationDelay = shuffleAnimationDelay;
+  shuffleAnimationDelay += 0.5 + "s";
 }
 
 deck.populate = function() {
@@ -111,8 +113,8 @@ function resolveGame(value, suit) {
 
 function setupRound() {
   if (deck.length < 8) {
-      if(roundsLeft < INITIAL_ROUNDS){
-        displayShuffleOverlay();
+    if (roundsLeft < INITIAL_ROUNDS) {
+      displayShuffleOverlay();
     }
     deck.populate();
     deck.shuffle();
@@ -122,10 +124,7 @@ function setupRound() {
     tableCards.push(newCard);
     var cardEl = createCard(newCard[0], newCard[1]);
     cardEl.onclick = undefined;
-    document
-      .querySelector(".flop-container")
-      .appendChild(cardEl);
-
+    document.querySelector(".flop-container").appendChild(cardEl);
   }
 
   for (var i = 0; i < HAND_SIZE; i++) {
@@ -181,27 +180,24 @@ function gameover() {
     highscore = total;
     window.sessionStorage.setItem("highscore", total);
   }
-  var resultOverlay = document.createElement("div");
-  resultOverlay.innerText =
+  document.querySelector(".result-text").innerText =
     "Game Over \n Final score: $" + total + "\nHighscore: $" + highscore;
-    resultOverlay.classList.add("overlay");
-  resultOverlay.classList.add("result-overlay");
-  document.querySelector(".app-container").appendChild(resultOverlay);
+  document.querySelector(".result-overlay").classList.remove("hidden");
 
   var cash = parseInt(window.localStorage.getItem(CASH_ID));
-  if(cash == null || cash == NaN){
+  if (cash == null || cash == NaN) {
     cash = 0;
   }
+  cash += total;
 
   window.localStorage.setItem(CASH_ID, cash);
-
 }
 
-function displayShuffleOverlay(){
-    document.querySelector(".shuffle-overlay").classList.remove("hidden");
-    setTimeout(() => {
-        document.querySelector(".shuffle-overlay").classList.add("hidden");
-    }, 1000);
+function displayShuffleOverlay() {
+  document.querySelector(".shuffle-overlay").classList.remove("hidden");
+  setTimeout(() => {
+    document.querySelector(".shuffle-overlay").classList.add("hidden");
+  }, 1000);
 }
 
 function removeChildren(element) {

@@ -28,6 +28,10 @@ body {
   /* background-color: black; */
 }
 
+a {
+  color: inherit;
+}
+
 .card {
   position: relative;
   bottom: 0;
@@ -87,17 +91,29 @@ body {
   list-style-type: none;
 }
 
-.result-overlay-container {
-  /* background-color: white; */
-}
-
 .result-overlay {
   /* padding: 15%; */
   background-color: var(--bright-magenta);
   color: var(--bright-cyan);
-  font-size: 300%;
+}
+
+.result-text {
+  font-size: 270%;
   margin: 25px;
   padding: 75px;
+}
+
+.result-controls {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.button {
+  padding: 10px;
+  border: 2px solid var(--bright-cyan);
+  float: left;
+  font-size: 100%;
 }
 
 .shuffle-overlay {
@@ -168,5 +184,5 @@ body {
 
 @font-face {
   font-family: DOS;
-  src: url(fonts/Perfect\ DOS\ VGA\ 437.ttf);
+  src: url("fonts/Perfect\ DOS\ VGA\ 437.ttf");
 }
