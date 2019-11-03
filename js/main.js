@@ -7,10 +7,10 @@ var SCORE_VALUES = {
   Pair: 5,
   "Two Pair": 25,
   "Three of a Kind": 50,
-  "Full House": 250,
+  "Full House": 150,
   Flush: 200,
-  Straight: 300,
-  "Four of a Kind": 400
+  Straight: 250,
+  "Four of a Kind": 300
 };
 var FLOP_SIZE = 5,
   HAND_SIZE = 3;
