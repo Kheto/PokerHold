@@ -34,6 +34,14 @@ var items = [
     price: 10000,
     desc: "Buy Jeremy's old cars",
     result: ""
+  },
+  {
+    id: 4,
+    dependsOn: 1,
+    price: 70,
+    desc: "Buy another video game",
+    result:
+      "Something about this game's story speaks to you deeply. You spend the weekend explaining it to your friends. After a week you have stopped playing without completing it. One day you'll try to play it again but you won't remember the controls."
   }
 ];
 
@@ -48,8 +56,11 @@ function populate() {
   var history = getPurchaseHistory();
 
   for (let item of items) {
-    console.log(item.id, item.dependsOn)
-    if ((!history.contains(item.id) && item.dependsOn < 0) || history.contains(item.dependsOn)) {
+    console.log(item.id, item.dependsOn);
+    if (
+      (!history.contains(item.id) && item.dependsOn < 0) ||
+      history.contains(item.dependsOn)
+    ) {
       var rowElement = createProductRow(item);
       rowElement.id = item.id;
       rowElement.onclick = () => {
