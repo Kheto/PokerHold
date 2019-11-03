@@ -4,7 +4,7 @@ var SUITS = ["c", "d", "h", "s"],
 
 var SCORE_VALUES = {
   "High Card": 0,
-  Pair: 10,
+  Pair: 5,
   "Two Pair": 25,
   "Three of a Kind": 50,
   "Full House": 250,
