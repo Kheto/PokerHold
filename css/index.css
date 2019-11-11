@@ -91,6 +91,17 @@ a {
   list-style-type: none;
 }
 
+.scoreboard li{
+  width: fit-content;
+  padding: 2px;
+}
+
+.score-flash{
+  animation: scoreflash 0.25s forwards;
+  animation-iteration-count: 4;
+  animation-timing-function: steps(1);
+}
+
 .result-overlay {
   /* padding: 15%; */
   background-color: var(--bright-magenta);
@@ -179,6 +190,25 @@ a {
   }
   100% {
     color: crimson;
+  }
+}
+
+@keyframes scoreflash {
+  0% {
+    background-color: var(--brown);
+    color: var(--blue);
+  }
+  33% {
+    background-color: var(--blue);
+    color: var(--brown);
+  }
+  66% {
+    background-color: var(--brown);
+    color: var(--blue);
+  }
+  100% {
+    background-color: reset;
+    color: reset;
   }
 }
 

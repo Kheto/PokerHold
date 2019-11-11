@@ -25,12 +25,14 @@ var score = {},
 
 var animTime = 1;
 
+if (window.location.protocol == "file:") {
+  INITIAL_ROUNDS = 3;
+}
 var roundsLeft = INITIAL_ROUNDS;
 
 //initialize shuffle animation
 var shuffleAnimationDelay = 0.5;
 for (el of document.querySelectorAll(".shuffle-text")) {
-  console.log(el);
   el.style.animationDelay = shuffleAnimationDelay;
   shuffleAnimationDelay += 0.5 + "s";
 }
@@ -84,36 +86,34 @@ function resolveGame(value, suit) {
       return x.join("");
     })
   );
-  console.log(
-    tableCards.map(x => {
-      return x.join("");
-    })
-  );
   if (score[hand.name]) {
     score[hand.name] += 1;
   } else {
     score[hand.name] = 1;
   }
-  console.log(hand.name);
-  console.log(deck.length);
 
   if (deck.length < DECK_MIN_SIZE) {
     roundsLeft -= 1;
   }
 
-  if (roundsLeft > 0) {
-    updateScore();
+  updateScore(hand.name);
+  document.querySelector(".transparent-overlay").classList.remove("hidden");
+
+  setTimeout(() => {
+    document.querySelector(".transparent-overlay").classList.add("hidden");
     cleanup();
-    setupRound();
-  } else {
-    cleanup();
-    gameover();
-  }
+    if (roundsLeft > 0) {
+      setupRound();
+    } else {
+      gameover();
+    }
+  }, 1000);
 }
 
 function setupRound() {
   if (deck.length < 8) {
     if (roundsLeft < INITIAL_ROUNDS) {
+      console.log("Shuffle overlay");
       displayShuffleOverlay();
     }
     deck.populate();
@@ -154,7 +154,7 @@ function cleanup() {
   removeChildren(document.querySelector(".flop-container"));
 }
 
-function updateScore() {
+function updateScore(winningHand) {
   const scoreboard = document.querySelector(".scoreboard");
   removeChildren(scoreboard);
   var total = 0;
@@ -162,6 +162,9 @@ function updateScore() {
   for (row in score) {
     var newRow = document.createElement("li");
     newRow.innerText = `${row}: ${score[row]} x $${SCORE_VALUES[row]}`;
+    if (row == winningHand) {
+      newRow.classList.add("score-flash");
+    }
     scoreboard.appendChild(newRow);
     total += score[row] * SCORE_VALUES[row];
   }
@@ -189,7 +192,7 @@ function gameover() {
     cash = 0;
   }
   cash += total;
-  console.log("setting cash to", cash)
+  console.log("setting cash to", cash);
   window.localStorage.setItem(CASH_ID, cash);
 }
 

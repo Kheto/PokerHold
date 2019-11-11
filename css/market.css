@@ -109,6 +109,10 @@ a{
   display: none;
 }
 
+.transparent-overlay{
+  background-color: #00000000;
+}
+
 .flash-text{
   animation: flashtext 0.25s;
   animation-iteration-count: 3;
