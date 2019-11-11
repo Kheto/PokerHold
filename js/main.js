@@ -10,7 +10,9 @@ var SCORE_VALUES = {
   "Full House": 200,
   Flush: 100,
   Straight: 250,
-  "Four of a Kind": 300
+  "Four of a Kind": 300,
+  "Straight Flush": 900,
+  "Royal Flush": 8000
 };
 var FLOP_SIZE = 5,
   HAND_SIZE = 3;
@@ -49,6 +51,7 @@ deck.populate = function() {
 };
 
 deck.shuffle = function() {
+  console.log("Shuffle");
   this.sort(() => Math.random() - 0.5);
 };
 deck.draw = function() {
