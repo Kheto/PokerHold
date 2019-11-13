@@ -41,7 +41,7 @@ for (el of document.querySelectorAll(".shuffle-text")) {
 
 deck.populate = function() {
   //console.log("Carried card:", carriedCard[0][0], carriedCard[0][1]);
-  deck = [];
+  deck.splice(0, -1); //Remove all elements
   for (suit of SUITS) {
     for (value of VALUES) {
       if (value !== carriedCard[0] || suit !== carriedCard[1]) {
